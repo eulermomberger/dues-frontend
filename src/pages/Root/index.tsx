@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 export const Root = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    navigate('/dues');
+    if (location.pathname === '/') {
+      navigate('/dues');
+    }
   }, []);
 
   return (
