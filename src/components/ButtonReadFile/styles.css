@@ -1,0 +1,13 @@
+.btn-read-file {
+  height: 40px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #2a2a8b;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+}
+
+.hide {
+  display: none;
+}

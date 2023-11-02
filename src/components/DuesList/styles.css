@@ -1,0 +1,44 @@
+.dues-table {
+  padding: 30px 20px;
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+.dues-table > thead {
+  height: 40px;
+  display: block;
+}
+
+.dues-table > thead > tr {
+  display: grid;
+  grid-template-columns: minmax(200px, 2fr) 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding: 0px 15px;
+}
+
+.dues-table > tbody {
+  display: block;
+}
+
+.dues-table > thead > tr > th:first-child,
+.dues-table > tbody > tr > td:first-child {
+  text-align: left;
+}
+
+.dues-table > tbody > tr {
+  background: #1f2029;
+  height: 60px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: minmax(200px, 2fr) 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dues-table > tbody > tr > td > a {
+  text-decoration: none;
+  color: #FFF;
+}
