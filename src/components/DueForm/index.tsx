@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Due } from '../../@types/Due';
 
 import { formatDecimalNumber } from '../../utils';
+import { updateDue } from '../../api';
 
 import './styles.css';
-import { updateDue } from '../../api';
 
 type DueFormProps = {
   due: Due | null;
@@ -12,15 +14,20 @@ type DueFormProps = {
 
 export const DueForm = ({ due }: DueFormProps) => {
   const [info, setInfo] = useState<string | null | undefined>(due?.informacoes_complementares);
+  const navigate = useNavigate();
 
   const handleOnChangeInfo = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInfo(event.target.value);
   };
 
-  const handleSave = async () => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     if (!due) return;
 
+    event.preventDefault();
+
     await updateDue(due.id, Object.assign(due, { informacoes_complementares: String(info) }));
+
+    navigate('/dues', { replace: true });
   };
 
   if (!due) {
@@ -28,7 +35,7 @@ export const DueForm = ({ due }: DueFormProps) => {
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <fieldset className='form-fieldset'>
         <h4>Dados Gerais</h4>
 
@@ -175,7 +182,6 @@ export const DueForm = ({ due }: DueFormProps) => {
       <div className='form-footer'>
         <button
           type='submit'
-          onClick={handleSave}
           className='form-submit-button'
         >
           Salvar

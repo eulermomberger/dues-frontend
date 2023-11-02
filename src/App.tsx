@@ -5,21 +5,24 @@ import {
 
 import { Dues } from './pages/Dues';
 import { DueEdit, loader as dueEditLoader } from './pages/DueEdit';
+import { Root } from './pages/Root';
 
 export default function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Dues/>,
-    },
-    {
-      path: '/dues',
-      element: <Dues/>,
-    },
-    {
-      path: '/dues/:dueId',
-      element: <DueEdit/>,
-      loader: dueEditLoader,
+      element: <Root/>,
+      children: [
+        {
+          path: 'dues',
+          element: <Dues/>,
+        },
+        {
+          path: 'dues/:dueId',
+          element: <DueEdit/>,
+          loader: dueEditLoader,
+        },
+      ],
     },
   ]);
 
